@@ -1,107 +1,568 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MartShop Analytics</title>
-  <meta name="description" content="Site oficial do aplicativo MartShop Analytics.">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f7fa;
-      color: #222;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MartShop Analytics</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f6f8;
+    color: #1f2937;
+}
+
+header {
+    background: #26343b;
+    color: white;
+    padding: 24px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo-area h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.logo-area p {
+    margin: 5px 0 0;
+    color: #d7dee2;
+    font-size: 14px;
+}
+
+.status {
+    background: #1f9d55;
+    padding: 9px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1250px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    margin: 0 0 8px;
+    font-size: 26px;
+}
+
+.welcome p {
+    margin: 0;
+    color: #6b7280;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+.card-title {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.card-value {
+    font-size: 28px;
+    font-weight: bold;
+    color: #111827;
+}
+
+.card-info {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.green {
+    color: #15803d;
+}
+
+.blue {
+    color: #2563eb;
+}
+
+.orange {
+    color: #d97706;
+}
+
+.red {
+    color: #dc2626;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.panel {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border: 1px solid #e5e7eb;
+}
+
+.panel h3 {
+    margin: 0 0 20px;
+    font-size: 19px;
+}
+
+.chart {
+    height: 270px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: 12px;
+    padding: 20px 10px 5px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.bar-container {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}
+
+.bar {
+    width: 55%;
+    max-width: 50px;
+    background: #26343b;
+    border-radius: 6px 6px 0 0;
+    min-height: 15px;
+}
+
+.bar-label {
+    position: absolute;
+    bottom: -25px;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.product-sales {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.product-value {
+    font-weight: bold;
+    color: #15803d;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.action {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.action h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+}
+
+.action p {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
     }
 
     header {
-      background: #26343b;
-      color: white;
-      padding: 70px 20px;
-      text-align: center;
+        padding: 20px;
     }
 
-    header h1 {
-      font-size: 48px;
-      margin: 0 0 15px;
+    .container {
+        padding: 0 12px;
     }
-
-    header p {
-      font-size: 18px;
-      margin: 0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    section {
-      background: white;
-      padding: 35px;
-      margin-bottom: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-
-    h2 {
-      color: #26343b;
-    }
-
-    a {
-      color: #175cd3;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #666;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>MartShop Analytics</h1>
-  <p>Aplicativo de análise e gerenciamento de dados</p>
+
+    <div class="logo-area">
+        <h1>MartShop Analytics</h1>
+        <p>Painel de análise e gerenciamento da sua operação</p>
+    </div>
+
+    <div class="status">
+        SISTEMA ONLINE
+    </div>
+
 </header>
 
-<main>
+<main class="container">
 
-  <section>
-    <h2>Sobre o aplicativo</h2>
-    <p>
-      O MartShop Analytics é uma aplicação desenvolvida para análise
-      e gerenciamento de dados da conta comercial do MartShop.
-    </p>
-  </section>
+    <section class="welcome">
 
-  <section>
-    <h2>Integração com plataformas</h2>
-    <p>
-      O aplicativo utiliza APIs oficiais para permitir que o usuário
-      autorizado consulte e analise informações relacionadas à sua conta.
-    </p>
-  </section>
+        <h2>Visão geral</h2>
 
-  <section>
-    <h2>Privacidade</h2>
-    <p>
-      O MartShop Analytics respeita a privacidade dos usuários e não
-      vende ou comercializa informações pessoais.
-    </p>
+        <p>
+            Acompanhe os principais indicadores da sua operação de vendas.
+        </p>
 
-    <p>
-      <a href="privacy.html">Leia nossa Política de Privacidade</a>
-    </p>
-  </section>
+    </section>
+
+
+    <section class="cards">
+
+        <div class="card">
+
+            <div class="card-title">
+                Faturamento
+            </div>
+
+            <div class="card-value blue">
+                R$ 8.450,00
+            </div>
+
+            <div class="card-info">
+                Período atual
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                Vendas
+            </div>
+
+            <div class="card-value">
+                127
+            </div>
+
+            <div class="card-info green">
+                +12,5% no período
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                Lucro líquido
+            </div>
+
+            <div class="card-value green">
+                R$ 2.135,40
+            </div>
+
+            <div class="card-info">
+                Resultado estimado
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-title">
+                Margem
+            </div>
+
+            <div class="card-value orange">
+                25,3%
+            </div>
+
+            <div class="card-info">
+                Margem média
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="grid">
+
+
+        <div class="panel">
+
+            <h3>
+                Evolução das vendas
+            </h3>
+
+            <div class="chart">
+
+                <div class="bar-container">
+                    <div class="bar" style="height:35%;"></div>
+                    <span class="bar-label">Seg</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:48%;"></div>
+                    <span class="bar-label">Ter</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:42%;"></div>
+                    <span class="bar-label">Qua</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:65%;"></div>
+                    <span class="bar-label">Qui</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:78%;"></div>
+                    <span class="bar-label">Sex</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:92%;"></div>
+                    <span class="bar-label">Sáb</span>
+                </div>
+
+                <div class="bar-container">
+                    <div class="bar" style="height:60%;"></div>
+                    <span class="bar-label">Dom</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="panel">
+
+            <h3>
+                Produtos em destaque
+            </h3>
+
+            <div class="products">
+
+                <div class="product">
+
+                    <div>
+                        <div class="product-name">
+                            Produto 1
+                        </div>
+
+                        <div class="product-sales">
+                            42 vendas
+                        </div>
+                    </div>
+
+                    <div class="product-value">
+                        R$ 980
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div>
+                        <div class="product-name">
+                            Produto 2
+                        </div>
+
+                        <div class="product-sales">
+                            31 vendas
+                        </div>
+                    </div>
+
+                    <div class="product-value">
+                        R$ 745
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div>
+                        <div class="product-name">
+                            Produto 3
+                        </div>
+
+                        <div class="product-sales">
+                            24 vendas
+                        </div>
+                    </div>
+
+                    <div class="product-value">
+                        R$ 590
+                    </div>
+
+                </div>
+
+
+                <div class="product">
+
+                    <div>
+                        <div class="product-name">
+                            Produto 4
+                        </div>
+
+                        <div class="product-sales">
+                            18 vendas
+                        </div>
+                    </div>
+
+                    <div class="product-value">
+                        R$ 420
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="actions">
+
+        <div class="action">
+
+            <h4>
+                Análise de produtos
+            </h4>
+
+            <p>
+                Identifique produtos mais vendidos e mais lucrativos.
+            </p>
+
+        </div>
+
+
+        <div class="action">
+
+            <h4>
+                Análise financeira
+            </h4>
+
+            <p>
+                Acompanhe faturamento, custos, lucro e margem.
+            </p>
+
+        </div>
+
+
+        <div class="action">
+
+            <h4>
+                Estoque
+            </h4>
+
+            <p>
+                Controle produtos disponíveis e identifique produtos parados.
+            </p>
+
+        </div>
+
+    </section>
+
 
 </main>
 
-<footer>
-  © 2026 MartShop Analytics — MartShop
+
+<footer class="footer">
+
+    MartShop Analytics — Sistema de análise e gerenciamento de dados
+
 </footer>
+
 
 </body>
 </html>
